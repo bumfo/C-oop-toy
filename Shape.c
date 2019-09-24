@@ -6,7 +6,7 @@ struct ShapeVtbl;
 
 typedef struct {
   struct ShapeVtbl *vptr;
-} Shape;
+} /* abstract */ Shape;
 
 typedef struct ShapeVtbl {
   /* abstract */ int (*area)(Shape *);
@@ -41,14 +41,6 @@ void Rect_init(Rect *self) {
   Shape *base = (Shape *) self;
   Shape_init(base);
   base->vptr = &Rect_vtbl;
-}
-
-Rect * Rect_new(int width, int height) {
-  Rect *self = (Rect *) malloc(sizeof(Rect));
-  self->width = width;
-  self->height = height;
-  Rect_init(self);
-  return self;
 }
 
 /* Square */
